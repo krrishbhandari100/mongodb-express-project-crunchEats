@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrunchEats - Recipe</title>
+    <link rel="stylesheet" href="/static/css/recipe.css">
+    <%- include('components/css')  %> 
+</head>
+
+<body>
+    <%- include('components/header') %>
+
+    <div class="body container">
+        <h1 class="text-danger mt-3">Recipes:</h1>
+        <div class="row">
+            <% recipes.forEach(function(recipe){ %>
+                <div class="col-sm-4 mt-2">
+                    <div class="card" style="width: auto;">
+                        <!-- <img src="https://www.vegrecipesofindia.com/wp-content/uploads/2020/11/pizza-recipe-2-500x375.jpg" class="card-img-top" alt="..."> -->
+                        <img src="<%= recipe.image %>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title"><%= recipe.title %></h5>
+                          <p class="card-text"><%= recipe.subtitle %></p>
+                          <a href="/recipe/<%= recipe.slug %>" class="btn btn-danger btn-sm">View Recipe</a>
+                        </div>
+                      </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</body>
+<%- include('components/jss')  %>
+</html>

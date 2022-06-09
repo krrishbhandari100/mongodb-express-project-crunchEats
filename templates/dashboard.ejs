@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <%- include('components/css') %>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-danger text-white">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="#">Welcome <%= user.username %></a>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <!-- <span class="navbar-toggler-icon text-white"></span> -->
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" href="/admin/add">Add Recipe</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/admin/logout">Logout</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2 class="my-2 text-danger">All Recipes:</h2>
+        
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">_id</th>
+                    <th scope="col">title</th>
+                    <th scope="col">subtitle</th>
+                    <th scope="col">recipeBy</th>
+                    <th scope="col">slug</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% recipes.forEach(function(recipe) { %>
+                    <tr>
+                        <th scope="row"><%= recipe._id %></th>
+                        <td><%= recipe.title %></td>
+                        <td><%= recipe.subtitle %></td>
+                        <td><%= recipe.recipeBy %></td>
+                        <td><%= recipe.slug %></td>
+                        <td><a href="/admin/edit/<%= recipe.slug %>" class="btn btn-outline-danger btn-sm">Edit</a></td>
+                        <td><a onclick="deleteRecipe(`<%= recipe.slug %>`)" class="btn btn-outline-danger btn-sm">Delete</a></td>
+                    </tr>
+                 <% }); %>
+                
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+<%- include('components/jss') %>
+<script>
+    const deleteRecipe = async (slug)=>{
+        let res = await fetch('/admin/delete', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({slug: slug})
+        });
+        let data = res.json();
+        data.then(()=>{
+            window.location.reload();
+        })
+
+    }
+</script>
+</html>

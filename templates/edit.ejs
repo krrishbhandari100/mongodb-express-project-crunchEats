@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Edit</title>
+    <%- include('components/css') %>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-danger text-white">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="#">Welcome <%= user.username %></a>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <!-- <span class="navbar-toggler-icon text-white"></span> -->
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" href="/admin/addRecipe">Add Recipe</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/admin/logout">Logout</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-3">
+        <form method="POST">
+            <input type="text" name="slug" class="form-control my-3" readonly value="<%= recipe.slug %>">
+            <input type="text" name="title" class="form-control" value="<%= recipe.title %>">
+            <input type="text" name="subtitle" class="form-control my-3" value="<%= recipe.subtitle %>">
+            <textarea name="content" id="content" class="form-control my-3"><%= recipe.content %></textarea>
+            <input type="submit" value="Edit Now" class="btn btn-outline-danger my-3">
+        </form>
+    </div>
+
+</body>
+<%- include('components/jss') %>
+    <script type="text/javascript" src='https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js'
+        referrerpolicy="origin"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: '#content',
+            width: 1116,
+            height: 900,
+            plugins: [
+                'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
+                'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen', 'insertdatetime',
+                'media', 'table', 'emoticons', 'template', 'help'
+            ],
+            toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
+                'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
+                'forecolor backcolor emoticons | help',
+            menu: {
+                favs: { title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons' }
+            },
+            menubar: 'favs file edit view insert format tools table help',
+            content_css: 'css/content.css'
+        });
+    </script>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome To CrunchEats</title>
+    <%- include('components/css')  %>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-transparent text-white">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="#">CrunchEats</a>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <!-- <span class="navbar-toggler-icon text-white"></span> -->
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/about">About</a>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/recipe">Recipes</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-warning" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="body d-flex align-items-center text-white justify-content-end">
+
+        <div style="height: 200px;width: 400px;">
+            <h2>
+                <marquee behavior="scroll" direction="left">
+                    CrunchEats Presents
+                </marquee>
+            </h2>
+
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error, ex nemo non magni ut tempore sed officiis, quia totam eius molestias eligendi inventore libero, quas voluptatibus vel maxime qui aut?
+            </p>
+
+            <a href="/recipe">
+                <button type="button" class="btn btn-outline-warning">Get Started</button>
+            </a>
+        </div>
+        
+    </div>
+</body>
+<%- include('components/jss')  %>
+</html>
